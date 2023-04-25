@@ -9,20 +9,18 @@ const setContent = (process, Component, newItemLoading) => {
   switch (process) {
     case 'waiting':
       return <Spinner />;
-      break;
+
     case 'loading':
       return newItemLoading ? <Component data={newItemLoading} /> : <Spinner />;
-      break;
+
     case 'confirmed':
       return <Component />;
-      break;
+
     case 'error':
       return <ErrorMessage />;
-      break;
 
     default:
       throw new Error('Unexpected process state');
-      break;
   }
 };
 
@@ -77,16 +75,15 @@ const ComicsList = () => {
     return <ul className='comics__grid'>{items}</ul>;
   }
 
-  
-
   return (
     <div className='comics__list'>
-      {setContent(process, () => renderItems(comicsList),newItemLoading)}
+      {setContent(process, () => renderItems(comicsList), newItemLoading)}
       <button
         disabled={newItemLoading}
         style={{ display: comicsEnded ? 'none' : 'block' }}
         className='button button__main button__long'
         onClick={() => onRequest(offset)}>
+          
         <div className='inner'>load more</div>
       </button>
     </div>
